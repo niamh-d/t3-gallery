@@ -8,7 +8,7 @@ export function TopNav() {
   return (
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <div>
-        <Link href="/">Gallery</Link>
+        <Link href="/">Next T3 Gallery</Link>
       </div>
       <div className="flex flex-row items-center gap-4">
         <SignedOut>
