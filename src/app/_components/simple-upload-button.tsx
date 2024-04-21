@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/app/utils/uploadthing";
 import { toast } from "sonner";
