@@ -74,7 +74,7 @@ export default async function HomePage() {
   return (
     <main>
       <SignedOut>
-        <div className="mt-4 h-full w-full text-center text-2xl">
+        <div className="h-full w-full text-center text-2xl">
           <h2 className="mb-5">
             <span className="font-semibold">Next T3 Gallery</span> is an image
             gallery web app.
