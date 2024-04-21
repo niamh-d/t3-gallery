@@ -1,9 +1,7 @@
-"use client";
-
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/app/utils/uploadthing";
-import { usePostHog } from "posthog-js/react";
 import { toast } from "sonner";
+import { usePostHog } from "posthog-js/react";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -91,11 +89,11 @@ export function SimpleUploadButton() {
     onUploadError(error) {
       posthog.capture("upload_error", { error });
       toast.dismiss("upload-begin");
-      toast.error("Upload failed");
+      toast.error("Upload failed :-(");
     },
     onClientUploadComplete() {
       toast.dismiss("upload-begin");
-      toast("Upload complete!");
+      toast("Upload complete! Awesome!");
 
       router.refresh();
     },
