@@ -25,7 +25,9 @@ export default function CopyURL(props: { imageId: string }) {
       onClick={() => copyToClipboard(BASE_URL + props.imageId)}
     >
       {isCopied ? <span className="font-semibold">Copied!</span> : <CopySVG />}
-      {!isCopied && <p>Click icon to image link to share with your friends!</p>}
+      {!isCopied && (
+        <p>Click icon to copy a sharable link to your clipboard!</p>
+      )}
     </div>
   );
 }

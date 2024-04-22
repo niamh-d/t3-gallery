@@ -28,9 +28,12 @@ export default async function FullPageImageView(props: { id: string }) {
           </div>
           <div className="mb-2 flex flex-col gap-2 p-2">
             <span>Uploaded By:</span>
-            <span className="text-lg font-semibold tracking-wider">
-              {uploaderInfo.fullName}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-semibold tracking-wider">
+                {uploaderInfo.fullName}
+              </span>
+              {isOwner && <span>(you)</span>}
+            </div>
           </div>
           <div className="flex flex-col gap-2 p-2">
             <span>Created On:</span>
@@ -40,12 +43,7 @@ export default async function FullPageImageView(props: { id: string }) {
           </div>
           {isOwner && (
             <>
-              <SwitchCopyBlock
-                imageURL={props.id}
-                isPublic={image.isPublic}
-                changeHandler={switchPublicHandler}
-              />
-              <div className="mt-2 p-3">
+              <div className="mt-4 p-3">
                 <form
                   action={async () => {
                     "use server";
@@ -55,6 +53,11 @@ export default async function FullPageImageView(props: { id: string }) {
                 >
                   <Button variant="destructive">Delete</Button>
                 </form>
+                <SwitchCopyBlock
+                  imageURL={props.id}
+                  isPublic={image.isPublic}
+                  changeHandler={switchPublicHandler}
+                />
               </div>
             </>
           )}

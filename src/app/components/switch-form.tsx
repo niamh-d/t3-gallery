@@ -21,10 +21,15 @@ export default function SwitchForm(props: {
 
   return (
     <form onChange={onChangeHander}>
-      <div className="mt-3 flex items-center space-x-2">
+      <div className="mt-10">
+        {isShared
+          ? "This image is shareable. Click to disable sharing."
+          : "This image is private. Click to enable sharing."}
+      </div>
+      <div className="mt-3 flex items-center space-x-2 p-2">
         <Switch id="switch" defaultChecked={props.isPublic} />
         <Label htmlFor="switch">
-          <span>{isShared ? "Shareable" : "Click to share"}</span>
+          <span>{isShared ? "Shareable" : "Private"}</span>
         </Label>
       </div>
     </form>
