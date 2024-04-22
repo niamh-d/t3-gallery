@@ -1,14 +1,14 @@
 import { clerkClient } from "@clerk/nextjs/server";
 
 import { Button } from "~/components/ui/button";
-import { deleteImage, getImage } from "~/server/queries";
+import { deleteImage, getImage, updatePublic } from "~/server/queries";
 import SwitchForm from "./switch-form";
 
 export default async function FullPageImageView(props: { id: string }) {
   async function switchPublicHandler(isPublic: boolean) {
     "use server";
 
-    console.log("switching public", isPublic);
+    await updatePublic({ id: props.id, isPublic });
   }
 
   const image = await getImage(props.id);
@@ -35,7 +35,7 @@ export default async function FullPageImageView(props: { id: string }) {
               {new Date(image.createdAt).toDateString()}
             </span>
           </div>
-          <SwitchForm handler={switchPublicHandler} />
+          <SwitchForm handler={switchPublicHandler} isPublic={image.isPublic} />
           <div className="mt-2 p-3">
             <form
               action={async () => {

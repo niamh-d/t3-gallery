@@ -5,6 +5,7 @@ import { Switch } from "~/components/ui/switch";
 
 export default function SwitchForm(props: {
   handler: (e: React.ChangeEvent<HTMLFormElement>) => void;
+  isPublic: boolean;
 }) {
   const onChangeHander = (e) => {
     const checked = e.target.checked;
@@ -14,7 +15,7 @@ export default function SwitchForm(props: {
   return (
     <form onChange={onChangeHander}>
       <div className="mt-3 flex items-center space-x-2">
-        <Switch id="switch" />
+        <Switch id="switch" defaultChecked={props.isPublic} />
         <Label htmlFor="switch">Shareable</Label>
       </div>
     </form>

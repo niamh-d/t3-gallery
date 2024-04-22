@@ -34,6 +34,22 @@ export async function getImage(id: string) {
   return image;
 }
 
+export async function updatePublic({
+  id,
+  isPublic,
+}: {
+  id: string;
+  isPublic: boolean;
+}) {
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorized");
+
+  await db
+    .update(images)
+    .set({ isPublic: isPublic })
+    .where(eq(images.urlId, id));
+}
+
 export async function deleteImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
