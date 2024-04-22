@@ -14,7 +14,7 @@ async function Hello({ hasImages }: { hasImages: boolean }) {
     <div className="mt-4 h-full w-full  text-center text-xl">
       {!hasImages && (
         <p>
-          Hello, {user!.firstName} 👋 You don't have any images yet. Why not
+          Hello, {user!.firstName} 👋 You don&apos;t have any images yet. Why not
           upload some?
         </p>
       )}
