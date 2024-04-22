@@ -105,3 +105,21 @@ dialog:modal {
     @apply flex-col;
   }
 }
+
+@media (max-width: 480px) {
+  .img-pg {
+    @apply flex-col pb-4;
+  }
+
+  .img-box {
+    @apply w-1/2;
+  }
+
+  .details-box {
+    @apply w-1/2;
+  }
+
+  .details-box .file-name {
+    @apply truncate;
+  }
+}
