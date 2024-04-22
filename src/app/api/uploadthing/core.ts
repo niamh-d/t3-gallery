@@ -5,6 +5,8 @@ import { UploadThingError } from "uploadthing/server";
 import { db } from "~/server/db";
 import { images } from "~/server/db/schema";
 
+import { v4 as uuidv4 } from "uuid";
+
 const f = createUploadthing();
 
 // FileRouter for your app, can contain multiple FileRoutes
@@ -26,9 +28,13 @@ export const ourFileRouter = {
       // This code RUNS ON YOUR SERVER after upload
       console.log("Upload complete for userId:", metadata.userId);
 
+      console.log(uuidv4())
+
       await db.insert(images).values({
         name: file.name,
         url: file.url,
+        urlId: uuidv4(),
+        isPublic: 0,
         userId: metadata.userId,
       });
 
