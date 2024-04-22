@@ -2,7 +2,8 @@ import { clerkClient } from "@clerk/nextjs/server";
 
 import { Button } from "~/components/ui/button";
 import { deleteImage, getImage, updatePublic } from "~/server/queries";
-import SwitchForm from "./switch-form";
+
+import SwitchCopyBlock from "./switch-copy-block";
 
 export default async function FullPageImageView(props: { id: string }) {
   async function switchPublicHandler(isPublic: boolean) {
@@ -12,7 +13,9 @@ export default async function FullPageImageView(props: { id: string }) {
   }
 
   const image = await getImage(props.id);
+
   const uploaderInfo = await clerkClient.users.getUser(image.userId);
+
   return (
     <div className="mt-10 flex h-full w-full min-w-0">
       <div className="flex flex-shrink items-center justify-center">
@@ -35,7 +38,11 @@ export default async function FullPageImageView(props: { id: string }) {
               {new Date(image.createdAt).toDateString()}
             </span>
           </div>
-          <SwitchForm handler={switchPublicHandler} isPublic={image.isPublic} />
+          <SwitchCopyBlock
+            imageURL={props.id}
+            isPublic={image.isPublic}
+            changeHandler={switchPublicHandler}
+          />
           <div className="mt-2 p-3">
             <form
               action={async () => {
