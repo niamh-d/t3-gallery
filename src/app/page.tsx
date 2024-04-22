@@ -43,6 +43,7 @@ function Images({
     id: number;
     name: string;
     url: string;
+    urlId: string;
     userId: string;
     createdAt: Date;
     updatedAt: Date | null;
@@ -55,7 +56,7 @@ function Images({
           <div>
             <p className="mb-2 mt-2 truncate">{image.name}</p>
           </div>
-          <Link href={`/img/${image.id}`}>
+          <Link href={`/img/${image.urlId}`}>
             <Image
               src={image.url}
               alt={image.name}
