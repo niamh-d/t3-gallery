@@ -22,16 +22,20 @@ export async function getMyImages() {
 
 export async function getImage(id: string) {
   const user = auth();
-  if (!user.userId) throw new Error("Unauthorized");
 
   const image = await db.query.images.findFirst({
     where: (model, { eq }) => eq(model.urlId, id),
   });
+
   if (!image) throw new Error("Image not found");
 
-  if (image.userId !== user.userId) throw new Error("Unauthorized");
+  const isOwner = image?.userId === user.userId;
 
-  return image;
+  if (!image.isPublic && !user.userId) throw new Error("Unauthorized");
+
+  if (!image.isPublic && !isOwner) throw new Error("Unauthorized");
+
+  return { image, isOwner };
 }
 
 export async function updatePublic({

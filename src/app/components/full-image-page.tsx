@@ -12,7 +12,7 @@ export default async function FullPageImageView(props: { id: string }) {
     await updatePublic({ id: props.id, isPublic });
   }
 
-  const image = await getImage(props.id);
+  const { image, isOwner } = await getImage(props.id);
 
   const uploaderInfo = await clerkClient.users.getUser(image.userId);
 
@@ -38,22 +38,31 @@ export default async function FullPageImageView(props: { id: string }) {
               {new Date(image.createdAt).toDateString()}
             </span>
           </div>
-          <SwitchCopyBlock
-            imageURL={props.id}
-            isPublic={image.isPublic}
-            changeHandler={switchPublicHandler}
-          />
-          <div className="mt-2 p-3">
-            <form
-              action={async () => {
-                "use server";
+          {isOwner && (
+            <>
+              <SwitchCopyBlock
+                imageURL={props.id}
+                isPublic={image.isPublic}
+                changeHandler={switchPublicHandler}
+              />
+              <div className="mt-2 p-3">
+                <form
+                  action={async () => {
+                    "use server";
 
-                await deleteImage(props.id);
-              }}
-            >
-              <Button variant="destructive">Delete</Button>
-            </form>
-          </div>
+                    await deleteImage(props.id);
+                  }}
+                >
+                  <Button variant="destructive">Delete</Button>
+                </form>
+              </div>
+            </>
+          )}
+          {!isOwner && (
+            <p className="mt-5 text-lg">
+              If this is your image, sign in above to edit.
+            </p>
+          )}
         </div>
       </div>
     </div>
