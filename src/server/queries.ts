@@ -5,6 +5,8 @@ import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
 
+import { useRouter } from "next/router";
+
 import { db } from "./db";
 
 export async function getMyImages() {
@@ -55,6 +57,7 @@ export async function updatePublic({
 }
 
 export async function deleteImage(id: string) {
+  const router = useRouter();
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
@@ -71,4 +74,5 @@ export async function deleteImage(id: string) {
   });
 
   redirect("/");
+  router.reload();
 }
