@@ -1,21 +1,32 @@
 import { clerkClient } from "@clerk/nextjs/server";
 
 import { Button } from "~/components/ui/button";
-import { deleteImage, getImage, updatePublic } from "~/server/queries";
+import {
+  deleteImage,
+  getImage,
+  updatePublic,
+  updateFileName,
+} from "~/server/queries";
 
 import SwitchCopyBlock from "./switch-copy-block";
 import NameBox from "./name-box";
 
 export default async function FullPageImageView(props: { id: string }) {
+  const { image, isOwner } = await getImage(props.id);
+
+  const uploaderInfo = await clerkClient.users.getUser(image.userId);
+
   async function switchPublicHandler(isPublic: boolean) {
     "use server";
 
     await updatePublic({ id: props.id, isPublic });
   }
 
-  const { image, isOwner } = await getImage(props.id);
+  async function fileNameInputHandler(newfileName: string) {
+    "use server";
 
-  const uploaderInfo = await clerkClient.users.getUser(image.userId);
+    await updateFileName({ id: image.id, fileName: newfileName });
+  }
 
   return (
     <div className="img-pg mt-10 h-full w-full min-w-0">
@@ -24,7 +35,13 @@ export default async function FullPageImageView(props: { id: string }) {
       </div>
       <div className="details-box ml-5 w-auto flex-shrink-0 border-l">
         <div className="ml-5 flex flex-col">
-          <NameBox fileName={image.name} id={image.id} />
+          <NameBox
+            fileName={image.name}
+            id={image.id}
+            handler={fileNameInputHandler}
+            isOwner={isOwner}
+          />
+
           <div className="mb-2 flex flex-col gap-2 p-2">
             <span>Uploaded By:</span>
             <div className="flex items-center gap-2">

@@ -1,4 +1,16 @@
-export default function NameBox(props: { fileName: string; id: number }) {
+"use client";
+
+import { useState } from "react";
+import FileNameInput from "./filename-input";
+
+export default function NameBox(props: {
+  fileName: string;
+  id: number;
+  isOwner: boolean;
+  handler: (newfileName: string) => void;
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+
   let { fileName } = props;
 
   fileName =
@@ -6,11 +18,40 @@ export default function NameBox(props: { fileName: string; id: number }) {
       ? fileName.slice(0, 15) + "[...]" + fileName.slice(-15)
       : fileName;
 
+  const openFormHandler = () => {
+    setIsEditing(true);
+  };
+
+  const closeFormHandler = () => {
+    setIsEditing(false);
+  };
+
+  if (!props.isOwner)
+    return (
+      <div className="file-name border-b-2 p-2 text-lg font-extralight tracking-wide">
+        {fileName}
+      </div>
+    );
+
   return (
-    <div className="file-name border-b-2 p-2 text-lg font-extralight tracking-wide">
-      {fileName}
-      <PencilSVG />
-    </div>
+    <>
+      {!isEditing && (
+        <div className="file-name border-b-2 p-2 text-lg font-extralight tracking-wide">
+          {fileName}
+          <div onClick={openFormHandler} className="cursor-pointer">
+            <PencilSVG />
+          </div>
+        </div>
+      )}
+      {isEditing && (
+        <FileNameInput
+          formhandler={closeFormHandler}
+          fileName={props.fileName}
+          id={props.id}
+          submitHandler={props.handler}
+        />
+      )}
+    </>
   );
 }
 

@@ -41,6 +41,19 @@ export async function getImage(id: string) {
   return { image, isOwner };
 }
 
+export async function updateFileName({
+  id,
+  fileName,
+}: {
+  id: number;
+  fileName: string;
+}) {
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorized");
+
+  await db.update(images).set({ name: fileName }).where(eq(images.id, id));
+}
+
 export async function updatePublic({
   id,
   isPublic,
