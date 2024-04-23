@@ -14,7 +14,7 @@ async function Hello({
   firstName: string;
 }) {
   return (
-    <div className="mt-4 h-full w-full  text-center text-xl">
+    <div className="mt-4 h-full w-full  p-4 text-center text-xl">
       {!hasImages && (
         <p>
           Hello, {firstName} 👋 <br />
@@ -23,7 +23,12 @@ async function Hello({
           You can upload a max. of 10 images at in one go.
         </p>
       )}
-      {hasImages && <p>Welcome back, {firstName}! 👋</p>}
+      {hasImages && (
+        <p>
+          Welcome back,{" "}
+          <span className="font-semibold tracking-wider">{firstName}</span>! 👋
+        </p>
+      )}
     </div>
   );
 }

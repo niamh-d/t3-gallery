@@ -8,26 +8,28 @@ export default async function HomePage() {
   return (
     <main>
       <SignedOut>
-        <div className="h-full w-full text-center text-2xl">
-          <h2 className="mb-5">
-            <span className="font-semibold">Next T3 Gallery</span> is an image
-            gallery web app.
-          </h2>
-          <p>Please sign in above to begin uploading your images.</p>
+        <div className="h-full w-full">
+          <div className="m-auto py-10 text-center text-2xl font-light">
+            <h2 className="mb-5">
+              <span className="font-semibold">Next T3 Gallery</span> is an image
+              gallery web app.
+            </h2>
+            <p>Please sign in above to begin uploading your images.</p>
+          </div>
         </div>
       </SignedOut>
 
       <SignedIn>
         <ImageGallery />
-        <LegalNotice />
       </SignedIn>
+      <LegalNotice />
     </main>
   );
 }
 
 const LegalNotice = () => {
   return (
-    <div className=" mt-5 flex h-full w-full flex-col gap-2 border-t-2 pt-5 text-center text-lg font-light tracking-wide">
+    <div className="mt-5 flex h-full w-full flex-col gap-2 border-t-2 pt-5 text-center text-lg font-extralight tracking-wide">
       <p>
         This application is a proof of concept.{" "}
         <span className="font-bold underline underline-offset-2">Never</span>{" "}
