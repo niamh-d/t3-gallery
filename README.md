@@ -1,20 +1,63 @@
-# T3 Gallery
+# Next T3 Gallery
 
-## TODO
+Checkout the [**live app on Vercel**](https://t3-gallery-zeta.vercel.app/)
 
-- [x] Make it deploy (vercel)
-- [x] Scaffold basic UI with mock data
-- [x] Tidy up build process
-- [x] Actually set up a db (vercel postgres)
-- [x] Attach db to UI
-- [x] Add authentication (w/ clerk)
-- [x] Add image upload
-- [x] "taint" (server-only)
-- [x] Use Next/Image component
-- [x] Error management (w/ Sentry)
-- [x] Routing/image page (parallel route)
-- [x] Upload buton to be less cringe
-- [x] ShadcnUi (toasts)
-- [x] Analytics (posthog)
-- [] Delete button (w/ Server actions)
-- [] Ratelimiting (upstash)
+## Ownership of design
+
+Original design belongs to [@t3dotgg](https://github.com/t3dotgg) following [YouTube tutorial](https://www.youtube.com/watch?v=d5x0JCZbAJs).
+
+Additional features added by [@niamh-d](https://github.com/niamh-d) post-tutorial.
+
+- Upon deletion of an image, the image is also deleted from the UploadThing database (not just Vercel Postgres db).
+- Users can rename their images.
+- Users can control visibility of their images per image (private v. shareable)
+- File address copy to clipboard button.
+- Mobile friendly (kinda)
+
+## What
+
+Next T3 Gallery is a simple image gallery built with Next.js, TypeScript and Vercel Postgres.
+
+Users can upload images, and then view them in a gallery. Users can then turn on and off the visibility of their images per individual image, also making private again images that were previously public.
+
+Additional features include the ability to rename images and delete images.
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Vercel Postgres (db)
+- Tailwind CSS
+
+## Additional tools
+
+- [Shadcn/ui](https://ui.shadcn.com/) components
+- File hosting with [UploadThing](https://uploadthing.com/)
+- App hosting with [Vercel](https://vercel.com/)
+- [Drizzle ORM](https://orm.drizzle.team/)
+- Error handling with [Sentry](https://sentry.io/)
+- Ratelimiting with [Upstash](https://upstash.com/)
+- Authenication with [Clerk](https://clerk.com/)
+- Analytics with [PostHog](https://posthog.com/)
+
+## Screenshots
+
+**Gallery view (main view)**
+
+![Gallery view (main view)](/imgs/readme_imgs/gallery_view.png)
+
+**Image in modal (shareable image)**
+
+![Image in modal (shareable image)](/imgs/readme_imgs/modal.png)
+
+**Name update feature**
+
+![Name update feature](/imgs/readme_imgs/name-update.png)
+
+**Private image view in modal**
+
+![Private image view in modal](/imgs/readme_imgs/private.png)
+
+**Public page view as viewed by non-owner**
+
+![Public page view as viewed by non-owner](/imgs/readme_imgs/public.png)
