@@ -19,12 +19,16 @@ export default function Images({
     updatedAt: Date | null;
   }[];
 }) {
+  const renderFileName = (str: string) => {
+    return str.length > 20 ? str.slice(0, 10) + "[...]" + str.slice(-10) : str;
+  };
+
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">
       {images.map((image) => (
         <div key={image.id} className="flex h-52 w-52 flex-col overflow-hidden">
           <div className="mb-5">
-            <p className="mb-2 mt-2 truncate">{image.name}</p>
+            <p className="mb-2 mt-2 truncate">{renderFileName(image.name)}</p>
             {image.isPublic && (
               <div className="flex items-center gap-2">
                 <PublicSVG />

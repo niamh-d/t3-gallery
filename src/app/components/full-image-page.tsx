@@ -4,6 +4,7 @@ import { Button } from "~/components/ui/button";
 import { deleteImage, getImage, updatePublic } from "~/server/queries";
 
 import SwitchCopyBlock from "./switch-copy-block";
+import NameBox from "./name-box";
 
 export default async function FullPageImageView(props: { id: string }) {
   async function switchPublicHandler(isPublic: boolean) {
@@ -23,9 +24,7 @@ export default async function FullPageImageView(props: { id: string }) {
       </div>
       <div className="details-box ml-5 w-auto flex-shrink-0 border-l">
         <div className="ml-5 flex flex-col">
-          <div className="file-name border-b-2 p-2 text-center text-lg font-extralight tracking-wide">
-            {image.name}
-          </div>
+          <NameBox fileName={image.name} id={image.id} />
           <div className="mb-2 flex flex-col gap-2 p-2">
             <span>Uploaded By:</span>
             <div className="flex items-center gap-2">
@@ -37,7 +36,7 @@ export default async function FullPageImageView(props: { id: string }) {
           </div>
           <div className="flex flex-col gap-2 p-2">
             <span>Created On:</span>
-            <span className="font-lighttracking-tight">
+            <span className="font-light tracking-tight">
               {new Date(image.createdAt).toDateString()}
             </span>
           </div>
