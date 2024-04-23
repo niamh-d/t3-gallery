@@ -18,8 +18,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "T3 Gallery",
-  description: "T3 Stack Gallery App",
+  title: "Next T3 Gallery",
+  description: "An image gallery web app made with create-t3-app",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

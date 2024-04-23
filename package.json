@@ -1,6 +1,7 @@
 {
-  "name": "t3-gallery",
+  "name": "next-t3-gallery",
   "version": "0.1.0",
+  "author": "Niamh Doyle",
   "private": true,
   "type": "module",
   "scripts": {

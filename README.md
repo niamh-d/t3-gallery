@@ -16,7 +16,7 @@ Additional features added by [@niamh-d](https://github.com/niamh-d) post-tutoria
 
 ## What
 
-Next T3 Gallery is a simple image gallery built with Next.js, TypeScript and Vercel Postgres.
+Next T3 Gallery – a [create-T3-app](https://create.t3.gg/) – is a simple image gallery built with Next.js, TypeScript and Vercel Postgres.
 
 Users can upload images, and then view them in a gallery. Users can then turn on and off the visibility of their images per individual image, also making private again images that were previously public.
 

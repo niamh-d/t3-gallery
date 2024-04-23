@@ -19,7 +19,39 @@ export default async function HomePage() {
 
       <SignedIn>
         <ImageGallery />
+        <LegalNotice />
       </SignedIn>
     </main>
   );
 }
+
+const LegalNotice = () => {
+  return (
+    <div className=" mt-5 flex h-full w-full flex-col gap-2 border-t-2 pt-5 text-center text-lg font-light tracking-wide">
+      <p>
+        This application is a proof of concept.{" "}
+        <span className="font-bold underline underline-offset-2">Never</span>{" "}
+        use this appication to store your personal images.{" "}
+        <span className="font-semibold">Meme are a-ok!</span>{" "}
+      </p>{" "}
+      <p>
+        By using this application you agree not to upload illegal materials.
+      </p>
+      <p>
+        Owner:{" "}
+        <a href="https://niamhdoyle.dev" target="_blank">
+          <span className="font-semibold">Niamh Doyle</span>
+        </a>
+        . I tweet at{" "}
+        <a href="https://twitter.com/niamh_codes" target="_blank">
+          <span className="font-semibold">@niamh_codes</span>
+        </a>
+        . Check out my GitHub repos{" "}
+        <a href="https://github.com/niamh-d" target="_blank">
+          <span className="font-semibold">@niamh-d</span>
+        </a>
+        .
+      </p>
+    </div>
+  );
+};
