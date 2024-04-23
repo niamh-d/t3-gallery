@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import { images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
-import analyticsServerClient from "./analytics";
+import { utapi } from "~/app/api/uploadthing/core";
 
 import { db } from "./db";
 
@@ -27,7 +27,10 @@ export async function getImage(id: string) {
     where: (model, { eq }) => eq(model.urlId, id),
   });
 
-  if (!image) throw new Error("Image not found");
+  if (!image) {
+    console.log("error", id);
+    throw new Error("Image not found");
+  }
 
   const isOwner = image?.userId === user.userId;
 
@@ -58,17 +61,22 @@ export async function deleteImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
-  await db
+  const image = await db.query.images.findFirst({
+    where: (model, { eq }) => eq(model.urlId, id),
+  });
+
+  if (!image) throw new Error("Image not found");
+
+  const uploadThingId = image.url.split("f/")[1];
+
+  const uploadThingResponse = await utapi.deleteFiles(uploadThingId);
+
+  if (!uploadThingResponse)
+    throw new Error("Deleting image on UploadThing failed");
+
+  const drizzleResponse = await db
     .delete(images)
     .where(and(eq(images.urlId, id), eq(images.userId, user.userId)));
 
-  analyticsServerClient.capture({
-    distinctId: user.userId,
-    event: "delete image",
-    properties: {
-      imageUrlId: id,
-    },
-  });
-
-  redirect("/");
+  if (drizzleResponse) redirect("/");
 }

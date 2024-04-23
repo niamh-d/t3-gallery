@@ -30,8 +30,8 @@ export default function Images({
               src={image.url}
               alt={image.name}
               style={{ objectFit: "contain" }}
-              width={192}
-              height={192}
+              width={256}
+              height={256}
             />
           </Link>
         </div>
