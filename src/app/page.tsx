@@ -31,14 +31,14 @@ const LegalNotice = () => {
   return (
     <div className="mt-5 flex h-full w-full flex-col gap-2 border-t-2 pt-5 text-center text-lg font-extralight tracking-wide">
       <p>
-        This application is a proof of concept.{" "}
+        This application (hereinafter "App") is a proof of concept.{" "}
         <span className="font-bold underline underline-offset-2">Never</span>{" "}
-        use this appication to store your personal images.{" "}
-        <span className="font-semibold">Meme are a-ok!</span>{" "}
+        use App to store your personal images.{" "}
+        <span className="font-semibold">
+          Meme and cute pet photos are a-ok!
+        </span>{" "}
       </p>{" "}
-      <p>
-        By using this application you agree not to upload illegal materials.
-      </p>
+      <p>By using App you agree not to upload illegal materials.</p>
       <p>
         Owner:{" "}
         <a href="https://niamhdoyle.dev" target="_blank">
